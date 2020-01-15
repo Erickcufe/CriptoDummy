@@ -1,4 +1,27 @@
-
+#' Criptocurrency Time Series
+#'
+#' @param cripto Specify the symbol of the cryptocurrency
+#' @param market Specifiy the symbol of the market
+#' @param temp DAILY, WEEKLY or MOTHLY
+#'
+#' @author
+#' Erick Cuevas Fernández
+#'
+#' @return
+#' Return a data.frame the daily historical time series for a digital currency (e.g., BTC) traded on a specific market (e.g., CNY/Chinese Yuan), refreshed daily at midnight (UTC). Prices and volumes are quoted in both the market-specific currency and USD.
+#'
+#' @importFrom
+#' stringr str_to_lower
+#'
+#' @importFrom
+#' jsonlite fromJSON
+#'
+#' @examples
+#' Cripto_time_series(cripto = "ETH", temp = "MONTHLY")
+#'
+#'
+#' @rdname Cripto_time_series
+#' @export Cripto_time_series
 Cripto_time_series <- function(cripto = "LTC", market = "MXN",
                                temp = "WEEKLY") {
 
@@ -25,13 +48,12 @@ Cripto_time_series <- function(cripto = "LTC", market = "MXN",
   df <- data.frame()
   for (i in 1:length(fixer)){
 
-    a <- data.frame(fixer[[i]])
-    rownames(a) <- names(fixer[i])
+    a <- data.frame(names(fixer[i]),fixer[[i]])
     df <- rbind(df, a)
 
   }
 
-  names_col <- c(paste0("Open_", market), "Open_USD",
+  names_col <- c("Date",paste0("Open_", market), "Open_USD",
                  paste0("High_", market), "High_USD",
                  paste0("Low_", market), "Low_USD",
                  paste0("Close_", market), "Close_USD",
@@ -42,6 +64,7 @@ Cripto_time_series <- function(cripto = "LTC", market = "MXN",
   return(df)
 
 }
+
 
 
 

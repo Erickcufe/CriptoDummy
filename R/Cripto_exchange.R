@@ -1,10 +1,24 @@
-
-Cripto_exchange <- function(cripto, exchange) {
-
-  UseMethod("Cripto_exchange")
-
-}
-
+#' Currency Exchange Rate
+#'
+#' @param cripto Specify the symbol of the cryptocurrency
+#' @param exchange Specifiy the symbol of the market
+#'
+#' @author
+#' Erick Cuevas Fernández
+#'
+#'
+#' @importFrom
+#' jsonlite fromJSON
+#'
+#' @return
+#' This function return  the realtime exchange rate for any pair of digital currency.
+#'
+#'
+#' @examples
+#' Cripto_exchange("BTC", "MXN")
+#'
+#' @rdname Cripto_time_series
+#' @export Cripto_exchange
 Cripto_exchange <- function(cripto = "LTC", exchange = "MXN"){
 
    message(paste("This function give you the price market of", cripto, "in the",
