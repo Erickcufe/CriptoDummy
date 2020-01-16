@@ -2,7 +2,7 @@
 % Please edit documentation in R/Cripto_exchange.R
 \name{Cripto_exchange}
 \alias{Cripto_exchange}
-\title{Currency Exchange Rate}
+\title{Criptocurrency Exchange Rate}
 \usage{
 Cripto_exchange(cripto = "LTC", exchange = "MXN")
 }
@@ -15,9 +15,10 @@ Cripto_exchange(cripto = "LTC", exchange = "MXN")
 This function return  the realtime exchange rate for any pair of digital currency.
 }
 \description{
-Currency Exchange Rate
+Criptocurrency Exchange Rate
 }
 \examples{
+
 Cripto_exchange("BTC", "MXN")
 
 }

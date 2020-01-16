@@ -1,4 +1,4 @@
-#' Currency Exchange Rate
+#' Criptocurrency Exchange Rate
 #'
 #' @param cripto Specify the symbol of the cryptocurrency
 #' @param exchange Specifiy the symbol of the market
@@ -15,6 +15,7 @@
 #'
 #'
 #' @examples
+#'
 #' Cripto_exchange("BTC", "MXN")
 #'
 #' @rdname Cripto_exchange
