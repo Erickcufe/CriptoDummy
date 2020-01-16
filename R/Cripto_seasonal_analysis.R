@@ -9,6 +9,11 @@
 #' @return
 #' Two plots of Time Series decomposition and a List with the results of decompisitions
 #'
+#' @importFrom
+#' forecast forecast
+#'
+#' @import
+#' lubridate
 #'
 #' @examples
 #'

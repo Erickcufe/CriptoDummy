@@ -1,4 +1,4 @@
-#' Criptocurrency Holt Winters
+#' Criptocurrency Arima (Modelo Autorregresivo Integrado de Media Movil)
 #'
 #' @param df A data.frame with time series
 #' @param temp Interval of time series (DAILY, WEEKLY, MONTHLY)
@@ -8,10 +8,11 @@
 #' Erick Cuevas Fernández
 #'
 #' @return
-#' Two plots of Time Series prediction using HoltWinters
+#' One plot of Time Series prediction using ARIMA
 #'
 #' @importFrom
-#' forecast forecast
+#' forecast forecast auto.arima
+#'
 #'
 #' @import
 #' lubridate
@@ -19,12 +20,11 @@
 #' @examples
 #'
 #' ETH <- Cripto_time_series(cripto = "ETH", temp = "MONTHLY")
-#' Cripto_Holt_Winters(ETH, "MONTHLY", 6)
+#' Cripto_Arima(ETH, "MONTHLY", 6)
 #'
-#' @rdname Cripto_Holt_Winters
-#' @export Cripto_Holt_Winters
-Cripto_Holt_Winters <- function(df, temp, n_predict){
-
+#' @rdname Cripto_Arima
+#' @export Cripto_Arima
+Cripto_Arima <- function(df, temp, n_predict){
 
   df <- df[order(df[,1], decreasing = FALSE),]
 
@@ -63,15 +63,11 @@ Cripto_Holt_Winters <- function(df, temp, n_predict){
   df.ts <- ts(df[,8], start = start_date_1,
               frequency = interval)
 
-  df.hw <- HoltWinters(df.ts)
+  df.arima <- forecast::auto.arima(df.ts, parallel = TRUE)
 
-  plot(df.hw, col="blue", col.predicted = "red")
+  df.fore <- forecast::forecast(df.arima, h = n_predict)
+  plot(df.fore, col="red", fcol = "green")
 
-  df.fore <- forecast::forecast(df.hw, h = n_predict)
-  plot(df.fore)
-
- return(df.fore)
+  return(df.fore)
 
 }
-
-# r <- Cripto_Holt_Winters(df, "WEEKLY")
