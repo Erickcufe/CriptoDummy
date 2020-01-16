@@ -28,7 +28,7 @@ Cripto_Arima <- function(df, temp, n_predict){
 
   df <- df[order(df[,1], decreasing = FALSE),]
 
-  start_date <- df$Date[nrow(df)]
+  start_date <- df$Date[1]
   start_date_1 <- c(lubridate::year(start_date),
                     lubridate::month(start_date),
                     lubridate::day(start_date))
