@@ -11,5 +11,5 @@ https://www.alphavantage.co/documentation/
 if (!require(devtools)) {
     install.packages("devtools")
 }
-devtools::install_github("Erickcufe/CriptoChange")
+devtools::install_github("Erickcufe/CriptoDummy")
 ```
