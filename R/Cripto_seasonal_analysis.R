@@ -24,18 +24,26 @@ Cripto_seasonal_analysis <- function(df, temp){
   }
 
 
-  df.ts <- ts(df$Close_MXN, start = start_date_1,
+  df.ts <- ts(df[,8], start = start_date_1,
               frequency = interval)
 
-  plot(df.ts)
 
   df.ts.log <- log(df.ts)
-  plot(df.ts.log)
 
   df.stl <- stl(log(df.ts), s.window = "period")
-  plot(df.stl)
+  plot(df.stl, main = "Decomposition by Loess")
 
   df.dec <- decompose(df.ts.log)
   plot(df.dec)
 
+  df.season.adjusted <- df.ts.log - df.dec$seasonal
+  results <- list("Seasonal Decomposition of Time Series by Loess" = df.stl,
+                  "Classical Seasonal Decomposition by Moving Averages" = df.dec,
+                  "Seasonal Adjusted" = df.season.adjusted)
+
+  return(results)
+
 }
+
+a <- Cripto_seasonal_analysis(b, "WEEKLY")
+
