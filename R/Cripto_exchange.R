@@ -17,7 +17,7 @@
 #' @examples
 #' Cripto_exchange("BTC", "MXN")
 #'
-#' @rdname Cripto_time_series
+#' @rdname Cripto_exchange
 #' @export Cripto_exchange
 Cripto_exchange <- function(cripto = "LTC", exchange = "MXN"){
 
