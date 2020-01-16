@@ -7,4 +7,5 @@ From API  AlphaVantage
 if (!require(devtools)) {
     install.packages("devtools")
 }
+
 devtools::install_github("Erickcufe/CriptoChange")
