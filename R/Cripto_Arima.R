@@ -23,7 +23,7 @@
 #' Cripto_Arima(ETH, "MONTHLY", 6)
 #'
 #' @rdname Cripto_Arima
-#' @export Cripto_Arima
+#' @export
 Cripto_Arima <- function(df, temp, n_predict){
 
   df <- df[order(df[,1], decreasing = FALSE),]
