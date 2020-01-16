@@ -9,13 +9,17 @@
 #' @return
 #' Two plots of Time Series decomposition and a List with the results of decompisitions
 #'
+#'
 #' @examples
 #'
 #' ETH <- Cripto_time_series(cripto = "ETH", temp = "MONTHLY")
 #' Cripto_seasonal_analysis(ETH, "MONTHLY")
 #'
-#' @export
+#' @rdname Cripto_seasonal_analysis
+#' @export Cripto_seasonal_analysis
 Cripto_seasonal_analysis <- function(df, temp){
+
+  df <- df[order(df[,1], decreasing = FALSE),]
 
   start_date <- df$Date[nrow(df)]
   start_date_1 <- c(lubridate::year(start_date),
@@ -62,4 +66,5 @@ Cripto_seasonal_analysis <- function(df, temp){
 
 }
 
+# jj <- Cripto_seasonal_analysis(df, "WEEKLY")
 
