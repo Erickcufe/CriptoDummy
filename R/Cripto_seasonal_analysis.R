@@ -1,3 +1,20 @@
+#' Criptocurrency Seasonal Analysis
+#'
+#' @param df A data.frame with time series
+#' @param temp Interval of time series (DAILY, WEEKLY, MONTHLY)
+#'
+#' @author
+#' Erick Cuevas Fernández
+#'
+#' @return
+#' Two plots of Time Series decomposition and a List with the results of decompisitions
+#'
+#' @examples
+#'
+#' ETH <- Cripto_time_series(cripto = "ETH", temp = "MONTHLY")
+#' Cripto_seasonal_analysis(ETH, "MONTHLY")
+#'
+#' @export
 Cripto_seasonal_analysis <- function(df, temp){
 
   start_date <- df$Date[nrow(df)]
@@ -45,5 +62,4 @@ Cripto_seasonal_analysis <- function(df, temp){
 
 }
 
-a <- Cripto_seasonal_analysis(b, "WEEKLY")
 
