@@ -19,7 +19,7 @@
 #' Cripto_exchange("BTC", "MXN")
 #'
 #' @rdname Cripto_exchange
-#' @export Cripto_exchange
+#' @export
 Cripto_exchange <- function(cripto = "LTC", exchange = "MXN"){
 
    message(paste("This function give you the price market of", cripto, "in the",

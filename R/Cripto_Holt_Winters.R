@@ -22,7 +22,7 @@
 #' Cripto_Holt_Winters(ETH, "MONTHLY", 6)
 #'
 #' @rdname Cripto_Holt_Winters
-#' @export Cripto_Holt_Winters
+#' @export
 Cripto_Holt_Winters <- function(df, temp, n_predict){
 
 

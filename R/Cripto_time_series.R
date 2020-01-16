@@ -22,7 +22,7 @@
 #'
 #'
 #' @rdname Cripto_time_series
-#' @export Cripto_time_series
+#' @export
 Cripto_time_series <- function(cripto = "LTC", market = "MXN",
                                temp = "WEEKLY") {
 
