@@ -16,6 +16,7 @@
 #' @importFrom
 #' jsonlite fromJSON
 #'
+#'
 #' @examples
 #' Cripto_time_series(cripto = "ETH", temp = "MONTHLY")
 #'
@@ -61,10 +62,18 @@ Cripto_time_series <- function(cripto = "LTC", market = "MXN",
 
   colnames(df) <- names_col
 
+  df$Date <- lubridate::as_date(df$Date)
+
+  for (i in 2:11) {
+
+    df[,i] <- as.character(df[,i])
+    df[,i] <- as.numeric(df[,i])
+
+  }
+
+
   return(df)
 
 }
-
-
 
 
