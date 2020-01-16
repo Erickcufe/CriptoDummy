@@ -66,6 +66,7 @@ Cripto_Arima <- function(df, temp, n_predict){
   df.arima <- forecast::auto.arima(df.ts, parallel = TRUE)
 
   df.fore <- forecast::forecast(df.arima, h = n_predict)
+
   plot(df.fore, col="red", fcol = "green")
 
   return(df.fore)

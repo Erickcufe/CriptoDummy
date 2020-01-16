@@ -68,6 +68,7 @@ Cripto_Holt_Winters <- function(df, temp, n_predict){
   plot(df.hw, col="blue", col.predicted = "red")
 
   df.fore <- forecast::forecast(df.hw, h = n_predict)
+
   plot(df.fore)
 
  return(df.fore)
