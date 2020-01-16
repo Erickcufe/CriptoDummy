@@ -2,12 +2,12 @@ Package: CriptoDummy
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Erick",
+           family = "Cuevas",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+           email = "erickcufe94@gmail.com",
+           comment = c(Website = "https://erickcufe.github.io"))
+Description: Function to find the exchange of cryptocurrencies.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
