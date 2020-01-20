@@ -2,6 +2,7 @@
 
 export(Cripto_Arima)
 export(Cripto_Holt_Winters)
+export(Cripto_exchange)
 export(Cripto_plot_predict)
 export(Cripto_seasonal_analysis)
 export(Cripto_time_series)
