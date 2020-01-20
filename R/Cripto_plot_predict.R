@@ -76,8 +76,9 @@ Cripto_plot_predict <- function(df, temp="DAILY", n_predicted=10,
   if (temp == "MONTHLY"){
 
     today <- lubridate::today()
-    a <- seq(today, by = "month", length = n_predicted)
-    df_2 <- data.frame(Months = as.character(a))
+    days_good <- seq(today, by = "month", length = n_predicted)
+    days_good <- as.character(days_good)
+    df_2 <- data.frame(Months = days_good)
 
   }
 
