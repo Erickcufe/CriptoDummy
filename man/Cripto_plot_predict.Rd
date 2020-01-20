@@ -4,8 +4,7 @@
 \alias{Cripto_plot_predict}
 \title{Crypto Plot of Predictions}
 \usage{
-Cripto_plot_predict(df, temp = "DAILY", n_predicted = 10,
-  crypto = "BTC")
+Cripto_plot_predict(df, temp = "DAILY", n_predicted = 10, crypto)
 }
 \arguments{
 \item{df}{A list with the predictions}

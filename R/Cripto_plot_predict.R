@@ -17,6 +17,9 @@
 #' @import
 #' lubridate
 #'
+#' @importFrom
+#' stringr str_to_lower
+#'
 #' @examples
 #'
 #' LTC_monthly <- Cripto_time_series(cripto = "LTC", market = "MXN", temp = "MONTHLY")
@@ -26,14 +29,14 @@
 #' @rdname Cripto_plot_predict
 #' @export
 Cripto_plot_predict <- function(df, temp="DAILY", n_predicted=10,
-                                crypto = "BTC"){
+                                crypto){
 
   message(paste("Plot the predictions of", n_predicted, stringr::str_to_lower(temp)))
 
   mean_1 <- unclass(df$mean)
   low_1 <- unclass(df$lower)
   high_1 <- unclass(df$upper)
-  actual <- CriptoDummy::Cripto_exchange()
+  actual <- CriptoDummy::Cripto_exchange(cripto = crypto)
   actual_1 <- as.numeric(as.character(actual$Exchange_Rate))
 
   if (temp=="DAILY"){
