@@ -1,3 +1,30 @@
+#' Crypto Plot of Predictions
+#'
+#' @param df A list with the predictions
+#' @param temp Units of time predicted
+#' @param n_predicted Numer of units predicted
+#' @param crypto A Crypto Symbol
+#'
+#' @author
+#' Erick Cuevas Fernandez
+#'
+#' @return
+#' A list with a data.frame with the predictions, and two plots of the predictions
+#'
+#' @import
+#' ggplot2
+#'
+#' @import
+#' lubridate
+#'
+#' @examples
+#'
+#' LTC_monthly <- Cripto_time_series(cripto = "LTC", market = "MXN", temp = "MONTHLY")
+#' LTC_hw3months <- Cripto_Holt_Winters(df = LTC_monthly, temp = "MONTHLY", n_predict = 3)
+#' plots_LTC <- Cripto_plot_predict(df = LTC_hw3months, temp = "MONTHLY", n_predicted = 3, crypto = "LTC")
+#'
+#' @rdname Cripto_plot_predict
+#' @export
 Cripto_plot_predict <- function(df, temp="DAILY", n_predicted=10,
                                 crypto = "BTC"){
 
@@ -6,33 +33,48 @@ Cripto_plot_predict <- function(df, temp="DAILY", n_predicted=10,
   mean_1 <- unclass(df$mean)
   low_1 <- unclass(df$lower)
   high_1 <- unclass(df$upper)
-  # plot(predictions)
   actual <- CriptoDummy::Cripto_exchange()
   actual_1 <- as.numeric(as.character(actual$Exchange_Rate))
-  # results <- predictions - actual_1
 
   if (temp=="DAILY"){
 
-    # colnames <- c("Change", "Days")
     today <- lubridate::today()
 
     days <- list()
     for (i in 1:n_predicted) {
 
       a <- today + i
-
       days[i] <- as.character(a)
 
     }
 
     days_good <- unlist(days)
-
     df_2 <- data.frame(Days = days_good)
 
   }
 
   if (temp == "WEEKLY"){
 
+    today <- lubridate::today()
+
+    week_1 <- list()
+    for (i in 1:n_predicted) {
+
+      a <- today + (i*7)
+      week_1[i] <- as.character(a)
+
+    }
+
+    days_good <- unlist(week_1)
+    df_2 <- data.frame(Weeks = days_good)
+
+  }
+
+  if (temp == "MONTHLY"){
+
+    today <- lubridate::today()
+    a <- seq(today, by = "month", length = n_predicted)
+    df_2 <- data.frame(Months = as.character(a))
 
   }
 
@@ -47,14 +89,10 @@ Cripto_plot_predict <- function(df, temp="DAILY", n_predicted=10,
     table_pred <- rbind(table_pred, temp_df)
 
   }
-  results <- data.frame(Results = mean_1, Days = seq_along(1:n_predicted))
-  # results_2 <- cbind(df_2, Predictions = predictions)
+  results <- data.frame(Results = mean_1, Dates = seq_along(1:n_predicted))
 
-  # market_predict <- data.frame(predictions, df_2)
 
-  # library(gridExtra)
-
-  plot_1 <- ggplot(table_pred, aes(Dates, Price_predicted)) +
+  plot_1 <- ggplot2::ggplot(table_pred, aes(Dates, Price_predicted)) +
       geom_boxplot(fill = "grey", alpha= 0.4) +
       theme_bw() +
       geom_point(size= 3, alpha= 0.6) +
@@ -70,12 +108,10 @@ Cripto_plot_predict <- function(df, temp="DAILY", n_predicted=10,
             axis.title.x=element_text(size=20),
             axis.title.y=element_text(size=20),
             plot.subtitle = element_text(hjust = 0.5, size = 15))
-      # annotation_custom(tableGrob(market_predict), xmin=7, xmax=10, ymin=-20, ymax=-10)
 
-  plot_2 <- ggplot(results, aes(Days, Results)) +
+  plot_2 <- ggplot2::ggplot(results, aes(Dates, Results)) +
     geom_smooth(method = "gam", color = "black", linetype = "dotted",
                 alpha = 0.2)+
-    # geom_smooth(method = "lm", fill= "orange") +
       geom_line() +
       theme_bw() +
       geom_point(size= 3, alpha= 0.6) +
@@ -92,8 +128,6 @@ Cripto_plot_predict <- function(df, temp="DAILY", n_predicted=10,
             axis.title.x=element_text(size=20),
             axis.title.y=element_text(size=20),
             plot.subtitle = element_text(hjust = 0.5, size = 15))
-
-  # table_grid <- gridExtra::grid.table(results)
 
   all_together <- list(Results = table_pred, plot_1, plot_2)
 
