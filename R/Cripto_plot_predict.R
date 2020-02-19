@@ -36,8 +36,8 @@ Cripto_plot_predict <- function(df, temp="DAILY", n_predicted=10,
   mean_1 <- unclass(df$mean)
   low_1 <- unclass(df$lower)
   high_1 <- unclass(df$upper)
-  actual <- CriptoDummy::Cripto_exchange(cripto = crypto)
-  actual_1 <- as.numeric(as.character(actual$Exchange_Rate))
+  actual <- CriptoDummy::Cripto_time_series(cripto = crypto, temp = temp)
+  actual_1 <- as.numeric(as.character(actual$Open_MXN))
 
   if (temp=="DAILY"){
 
