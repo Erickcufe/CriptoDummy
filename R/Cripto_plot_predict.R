@@ -37,7 +37,10 @@ Cripto_plot_predict <- function(df, temp="DAILY", n_predicted=10,
   low_1 <- unclass(df$lower)
   high_1 <- unclass(df$upper)
   actual <- CriptoDummy::Cripto_time_series(cripto = crypto, temp = temp)
-  actual_1 <- as.numeric(as.character(actual$Open_MXN))
+  actual_1 <- as.numeric(as.character(actual$Open_MXN[1]))
+  min_actual <- actual$Low_MXN[1]
+  max_actual <- actual$High_MXN[1]
+  close_actual <- actual$Close_MXN[1]
 
   if (temp=="DAILY"){
 
@@ -100,7 +103,9 @@ Cripto_plot_predict <- function(df, temp="DAILY", n_predicted=10,
       geom_boxplot(fill = "grey", alpha= 0.4) +
       theme_bw() +
       geom_point(size= 3, alpha= 0.6) +
-      geom_hline(yintercept = actual_1,  linetype ="dotdash", color = "red") +
+      geom_hline(yintercept = actual_1,  linetype ="dotdash", color = "darkgreen")+
+      geom_hline(yintercept = min_actual,  linetype ="dotdash", color = "blue")+
+      geom_hline(yintercept = max_actual,  linetype ="dotdash", color = "red")+
       scale_x_discrete(name = "Future Dates")  +
       ggtitle(paste("Predictions", today), subtitle = paste0(crypto, "-MXN")) +
       ylab("Price ($ MXN)") +
@@ -119,7 +124,10 @@ Cripto_plot_predict <- function(df, temp="DAILY", n_predicted=10,
       geom_line() +
       theme_bw() +
       geom_point(size= 3, alpha= 0.6) +
-      geom_hline(yintercept = actual_1,  linetype ="dotdash", color = "red", size = 1) +
+      geom_hline(yintercept = actual_1,  linetype ="dotdash", color = "green") +
+      geom_hline(yintercept = min_actual,  linetype ="dotdash", color = "blue")+
+      geom_hline(yintercept = max_actual,  linetype ="dotdash", color = "red")+
+      geom_hline(yintercept = close_actual,  linetype ="dotdash", color = "darkorange")+
       ggtitle(paste("Predictions", today), subtitle = paste0(crypto, "-MXN")) +
       ylab("Price ($ MXN)") +
       scale_x_discrete(name = "Future Dates", limits= seq_along(1:n_predicted),
